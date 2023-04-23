@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Flexbox</title>
+<head>
+    <script src="https://kit.fontawesome.com/4a5b4933d7.js" crossorigin="anonymous"></script>
+    <style>
+        #dialog {
+        display: flexbox;
+        position:absolute;
+        top:-200px;
+        left: calc(50VW - 150px);
+        width: 300px;
+        transition: top 0.8s;
+        z-index: 2;
+        }
+        .hd, .ft {
+            background-color: aqua;
+            height: 3vh;
+        }
+        .cn {
+            height: 20vh;
+            background-color: aliceblue;
+        }
+        #kruisje {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: rgb(255, 255, 255);
+        z-index: 4;
+        }
+        #leftAside, #rightAside {
+            background-color: rgb(174, 155, 177, 0.9);
+            overflow:hidden;
+            transition:0.5s;
+        }
+        #header {
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            color: rgb(252, 252, 252);
+            background-color: blueviolet; 
+            z-index: 1;
+        }
+        #DialogOverlay {
+            /* position: fixed;
+            display:none;
+            width: 100%;
+            height: 100%;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            top: 0;
+            background-color: rgba(0, 0, 0, 0.63);
+            z-index: 1; */
+        }
+        .open {
+            flex:1;
+        }
+
+        .close {
+            flex:0;
+        }
+        #menu {
+            background-color: rgba(255, 255, 255);
+            text-align: left;
+            z-index: 1;
+                }   
+        footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+            text-align: center;
+            z-index: 1;
+        }
+                
+        #ctrlBar {
+            background-color: navy;
+            color:white;
+            width:20px;
+            text-align: center;
+        }
+
+        main {
+            display:flex;
+            height:100vh;
+            z-index: 1;
+        }
+
+        section {
+            flex:3;
+        }
+        body {
+            margin: 0;
+                background-image: url("https://png.pngtree.com/background/20210710/original/pngtree-holographic-iridescent-color-wrinkled-foil-picture-image_982600.jpg");
+                background-color: rgb(246, 246, 246, 0.8);
+                z-index: 0;
+        }
+        #login {
+            background-color: #04AA6D;
+            left: 0%;
+            top: 0%;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+        }
+        #knopInloggen {
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        function showHideAside() {
+            //alert("hello world");
+            //document.getElementById("leftAside").className = "close";
+            if (document.getElementById("leftAside").className == "close") {
+                document.getElementById("leftAside").className = "open";
+                document.getElementById("rightAside").className = "open";
+                document.getElementById("ctrlBar").innerHTML = "&lt;";
+            } else {
+                document.getElementById("leftAside").className = "close";
+                document.getElementById("rightAside").className = "close";
+                document.getElementById("ctrlBar").innerHTML = "&gt;";
+            }
+                }
+                function showDialog() {
+                console.log("showDialog aangeroepen");
+                document.getElementById("dialog").style.top = "200px";
+                document.getElementById("DialogOverlay").style.display = "block";
+            }
+                function hideDialog() {
+                console.log("hideDialog aangeroepen");
+                document.getElementById("dialog").style.top = "-200px";
+                document.getElementById("DialogOverlay").style.display = "none";
+            }
+
+    </script>
+</head>
+
+<body>
+
+    <div id="container">
+        <div id="header">Flexbox</div>
+        <div id="menu">menu
+            <button class="login"onclick="showDialog()">log in</button>
+        </div>
+        
+        <footer>Footer</Footer>
+    </div>
+    <main>
+        <aside id="leftAside" class="open">sidebar left  -  Opdracht 3</aside>
+        <div id="ctrlBar" onclick="showHideAside()">
+            &lt;
+        </div>
+        <section>
+            Tweede Wereldoorlog
+In Zwolle (Zwollerkerspel) werden de verkeersbrug en de spoorbrug over de IJssel opgeblazen op 10 mei 1940. Daarmee viel ook de telefoonverbinding met Noord-Nederland weg, die via deze bruggen liep. In Zwolle werd een van de drie bureaus van de burgerlijke stand voor Duitsers gevestigd. Ook kreeg Zwolle een van de 57 door de Duitsers ingestelde arbeidsbureaus.
+Zwolle kreeg een zg. 'Joodsche Raad', opgericht in opdracht van de Duitsers. Tijdens de Tweede Wereldoorlog werden 495 joodse inwoners van Zwolle door de bezetter weggevoerd en in concentratiekampen omgebracht. Een joods echtpaar beroofde zich van het leven met de Duitsers voor de deur, en twee joden zijn omgebracht door het verzet in Hattem. Ook zijn er op diverse plaatsen in de stad mensen gefusilleerd die zich op enigerlei wijze verzetten tegen de bezetter.
+Diverse monumenten in de stad herinneren hieraan, zoals het Monument aan de Meppelerstraatweg en Monument op de schietbaan Berkum. In het Ter Pelkwijkpark staat het Oorlogsmonument Zwolle dat de herinnering wakker moet houden aan alle Zwollenaren die in de Tweede Wereldoorlog om het leven zijn gekomen als gevolg van oorlogshandelingen. Zwolle werd op 14 april 1945 door Canadezen bevrijd. Leo Major (1921-2008) was een van de eerste geallieerde militairen die de stad betrad en vrijwel zelfstandig verantwoordelijk was voor de terugtrekking van de Duitsers, en daarom ’de bevrijder van Zwolle’ wordt genoemd.
+        </section>
+        <aside id="rightAside" class="open">sidebar right</aside>
+        
+    </main>
+      <div id="dialog">
+        <div class="hd">Inloggen
+            <button class="kruisje"onclick="hideDialog('sanne')">X</button>
+        </div>
+        <div class="cn">
+            Gebruikersnaam<input type="text" value="sanne">
+            Wachtwoord <input type="password" value="sanne">
+            <input type="submit" value="log in">
+        </div>
+        <div class="ft">footer</div>
+        
+    </div>
+    <div id="DialogOverlay" style="display: block;"></div>
+      
+
+     
+
+
+</body>
